@@ -1,0 +1,19 @@
+<div class="well text-center">
+	<%= @categories%>
+	<%=simple_form_for @question do |f|  %>
+	  <div class='form-group'>
+	    <center><h4>Select a category to create your trivia question</h4></center>
+	   <hr>
+				<center><%=collection_select(:question, :category_id, Category.all, :id, :name, {}, {:multiple => false})%></center>
+	  </div>
+	  <hr>
+	  <center>
+		  <div class='form-group'>
+		    <%= f.button :submit %>
+		  </div>
+		</center>
+	<% end %>
+<h1>OR</h1>
+<hr>
+<%= render 'categories/new'%>
+</div>

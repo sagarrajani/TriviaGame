@@ -1,0 +1,10 @@
+	<%=form_for :category, class: 'form-inline' do |f| %>
+  <p>
+    <%=f.label :categories,'Create your own category',class: 'form-group' %><br>
+    <%=f.text_field(:name, {:class => 'form-control'})%>
+  </p>
+
+  <p>
+    <%= f.submit('Create',{:class => 'btn btn-default'})%>
+  </p>
+  <% end %>
