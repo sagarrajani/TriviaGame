@@ -1,0 +1,9 @@
+
+
+<% if user_signed_in? && current_user!=question.user%>
+<div class="well text-center">
+<h3>Question : <%=question.question %></h3>
+<p> Categories : <%= raw question.tag_list.map{|t| link_to t, tag_path(t)}.join(', ')%></p></br>
+<%= link_to "Answer" , question_path(question), :class => 'btn btn-default text-center'%>
+</div>
+<% end %>

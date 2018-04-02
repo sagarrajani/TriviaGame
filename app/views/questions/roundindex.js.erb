@@ -1,0 +1,6 @@
+
+$(document).ready ->
+  $("#answer").on("ajax:success", (e, data, status, xhr) ->
+    $("#answer").append xhr.responseText
+  ).on "ajax:error", (e, xhr, status, error) ->
+    $("#answer").append "<p>ERROR</p>"

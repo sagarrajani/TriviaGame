@@ -1,15 +1,15 @@
 
 <% if @question.answer!=@answer.answer %>
-<div class="well text-center">
+<div class="well">
   <h2><%= @question.question %></h2>
   <p class="danger">Wrong Answer</p>
   <p class=""> Correct Answer is -> <%=@question.answer%></p>
   <%= link_to "Back to Questions", questions_path, :class => 'btn btn-default text-center' %>
   </div>
   <% else %>
-  <div class="well text-center">
+  <div class="well">
     <h2><%= @question.question %></h2>
-    <h3><%= @answer.answer %></h3>
+    <h4><%= @answer.answer %></h4>
     <p class="">Correct Answer</p>
     <%= link_to "Back to Questions", questions_path, :class => 'btn btn-default text-center' %>
     </div>

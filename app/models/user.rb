@@ -7,4 +7,8 @@ class User < ApplicationRecord
 
   has_many :attempts
   has_many :questions, :through => :attempts,  dependent: :destroy
+  has_many :evaluations, class_name: "Reputation", as: :source
+
+  has_reputation :votes, source: {reputation: :votes, of: :questins}, aggregated_by: :sum
+
 end

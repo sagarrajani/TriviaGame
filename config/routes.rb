@@ -18,13 +18,19 @@ Rails.application.routes.draw do
   patch 'questions/:id/edit', to: 'questions#update'
   get 'tags/:tag', to: 'questions#index', as: :tag
   get 'users/score', to: 'users#score', as: 'score'
+
+  get 'round', to: 'questions#roundindex', as: 'roundindex'
+  get 'round/:id', to: 'questions#round', as: 'round'
+
   # match '/users',   to: 'users#index',   via: 'get'
   # match '/user/:id', to: 'users#show',       via: 'get'
   # get 'answer' => 'answer#index', as: 'answer'
   # resource :questions
   #
-  #     resources :categories
-  resources :questions
+      # resources :round
+  resources :questions do
+    member { post :vote }
+  end
   resources :tags
   # resources :users, except: [:new,:create]
     # resources :categories, except: [:destroy]

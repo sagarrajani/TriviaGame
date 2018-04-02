@@ -1,13 +1,14 @@
-
-
 <% obj=obj.reject{|o| atm.any?{|a| a==o.id} } %>
-
 <% obj.each do |question| %>
 <% if user_signed_in? && current_user!=question.user%>
-<div class="well text-center">
-<h3>Question : <%=question.question %></h3>
-<p> Categories : <%= raw question.tag_list.map{|t| link_to t, tag_path(t)}.join(', ')%></p></br>
+<div class="well row">
+<h3><%=question.question %></h3>
+<p> Categories : <%= raw question.tag_list.map{|t| link_to t, tag_path(t)}.join(', ')%></p>
+<p><%= pluralize question.reputation_for(:votes).to_i, "vote" %></p>
+<hr>
 <%= link_to "Answer" , question_path(question), :class => 'btn btn-default text-center'%>
+<%= link_to "", vote_question_path(question, type: "up"), method: "post",:class => 'btn btn-default glyphicon glyphicon-arrow-up text-right' %>
+<%= link_to "", vote_question_path(question, type: "down"), method: "post",:class => 'btn btn-default glyphicon glyphicon-arrow-down text-right' %>
 </div>
 <% end %>
 <% end %>
