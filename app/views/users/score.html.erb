@@ -1,0 +1,24 @@
+  <table class="table table-bordered">
+    <tr>
+  	  <th>Position</th>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
+    <% @rank = 0 %>
+    <% @users.each do |user| %>
+      <% if user.score != nil%>
+        <% if user.id == current_user.id %>
+          <tr class="info">
+            <td><%=@rank += 1%></td>
+            <td><%= user.name %></td>
+            <td><%= user.score %></td>
+        <% else %>
+          <tr>
+            <td><%=@rank += 1%></td>
+            <td><%= user.name %></td>
+            <td><%= user.score %></td>
+        <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+  </table>

@@ -5,7 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :question
-  has_many :answers
-  has_many :category
+  has_many :attempts
+  has_many :questions, :through => :attempts,  dependent: :destroy
 end

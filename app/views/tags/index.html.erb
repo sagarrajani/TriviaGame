@@ -1,0 +1,6 @@
+<div id="tag_cloud" class="well text-center">
+  <center><h2>Select a Category</h2></center>
+  <% tag_cloud Question.tag_counts, %w[s m l] do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: "btn btn-default" %>
+  <% end %>
+</div>

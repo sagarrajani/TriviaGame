@@ -1,13 +1,31 @@
-<h1>Question</h1>
-iD: 	<%= params[:category_id] %>
-user_iD: 	<%= current_user.id %>
-
-<%= form_for @question do |f|%>
+<h1 align="center">Create a question</h1>
 
 
+<div class="form-group">
+    <%= form_for(@question, :method => 'post', :html => {class: "well", role: "form"}) do |f| %>
+    <% if @question.errors.full_messages.any? %>
+      <% @question.errors.full_messages.each do |error_message| %>
+        <div class="alert alert-danger"><%= error_message %></div>
+      <% end %>
+    <% end %>
 
-<% end %>
+        <p>
+          <%= f.label :question %><br/>
+          <%= f.text_field :question, class: "form-control", placeholder: "Enter a Question", autofocus: true %>
+      </p>
+      <p>
+          <%= f.label :answer %><br/>
+          <%= f.text_field :answer, class: "form-control", placeholder: "Enter a answer", autofocus: true %>
+      </p>
+      <p>
+          <%= f.label :tag_list,"Categories (Seperated by Commas)" %><br/>
+          <%= f.text_field :tag_list, class: "form-control", placeholder: "Enter a answer", autofocus: true %>
+      </p>
+        <div class="inline text-center">
+          <p>
+            <%= f.submit class: 'btn btn-primary' %>
+          </p>
+        </div>
 
-<!-- <%= render 'answers/form'%>
-
-<%= render 'categories/new'%> -->
+    <% end %>
+</div>

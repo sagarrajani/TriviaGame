@@ -1,0 +1,11 @@
+<% @index=0 %>
+<% obj.each do |question| %>
+<% if user_signed_in? && current_user==question.user%>
+
+<div class="well text-center">
+<!-- <p class="text-left">Question <%= @index+=1 %></p> -->
+      <h3><%= link_to "#{question.question}" , showmyquestion_path(question)%></h3>
+
+</div>
+<% end %>
+<% end %>

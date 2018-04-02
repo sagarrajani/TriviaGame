@@ -1,6 +1,8 @@
 class Question < ApplicationRecord
   belongs_to :user
-  has_many :answers
-  has_many :category
-  accepts_nested_attributes_for :answers
+  has_many :questions_categories
+  has_many :categories, :through => :questions_categories
+  has_many :attempts
+  has_many :users, :through => :attempts
+  acts_as_taggable
 end

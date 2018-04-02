@@ -12,4 +12,11 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery.turbolinks
+//= require chosen-jquery
+//= require select2
 //= require_tree .
+
+$(function($){
+  $(".chosen-select").select2();
+});
