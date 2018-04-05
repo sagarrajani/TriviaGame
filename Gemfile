@@ -39,13 +39,19 @@ gem 'bootstrap-will_paginate'
 gem 'chosen-rails'
 gem 'jquery-turbolinks'
 gem 'select2-rails'
+gem 'rspec'
+
 gem 'activerecord-reputation-system', require: 'reputation_system'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'faker'
+  gem 'guard-rspec'
 end
 
 group :development do

@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
+  before_action :authenticate_user!
 
   def index
     # @question = Question.order("RANDOM()").limit(1)
@@ -82,15 +83,15 @@ class QuestionsController < ApplicationController
       score = -1
     end
     user = User.find(current_user.id)
-    if user.score == nil
+    if (user.score == nil && score == -1)
+      user.update_attribute(:score, 0)
+    elsif user.score == nil && score == 4
       user.update_attribute(:score, score)
+    else
+      user.update_attribute(:score, user.score + score)
       if user.score < 0
         user.update_attribute(:score, 0)
       end
-    elsif user.score < 0
-      user.update_attribute(:score, 0)
-    else
-      user.update_attribute(:score, user.score + score)
     end
   end
 
