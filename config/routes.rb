@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   get 'questions/:id/answer', to: 'questions#answer', as: 'ganswer'
   post 'questions/:id/answer', to: 'questions#answer', as: 'answer'
   patch 'questions/:id/edit', to: 'questions#update'
-  get 'tags/:tag', to: 'questions#index', as: :tag
+  get 'tags/:tag', to: 'questions#tagindex', as: 'tag'
+  get 'tags/:name/tagquestions/:id', to: 'questions#tagshow', as: 'tagshow'
+  post 'tags/:name/tagquestions/:id/answer', to: 'questions#taganswer', as: 'taganswer'
   get 'users/score', to: 'users#score', as: 'score'
 
   get 'round', to: 'questions#roundindex', as: 'roundindex'

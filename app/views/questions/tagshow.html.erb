@@ -1,14 +1,15 @@
+
     <div class='well'>
       <h2><%= @question.question %></h2>
       <hr>
-      <%= form_for @answer, url: answer_path do |f| %>
+      <%= form_for @answer, url: taganswer_path do |f| %>
         <%= f.hidden_field :question, value: @question.question %>
         <%= f.hidden_field :user, value: @question.user %>
         <div class="form-group">
           <%= f.label :answer, 'Enter Your Answer' %>
           <%= f.text_field :answer, class: "form-control", placeholder: "Answer of question", autofocus: true %></br>
           <%= f.submit("Submit", class: 'btn btn-default text-center') %>
-          <%= link_to "Back to Questions", questions_path, :class => 'btn btn-default text-center' %>
+          <%= link_to "Back to Questions", :back, :class => 'btn btn-default text-center' %>
           </div>
     </div>
 <% end %>
