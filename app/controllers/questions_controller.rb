@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
     @question = Question.order("RANDOM()")
     @question=@question.reject{|o| @attempt.any?{|a| a==o.id} }
     @question=@question.reject{|o| o.user==current_user }
-    @question=@question.paginate(:page => params[:page])
+    @question=@question.paginate(:page => params[:page], :per_page => 1)
     # render plain: @question.size
     end
 
