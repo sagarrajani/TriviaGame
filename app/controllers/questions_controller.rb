@@ -7,8 +7,8 @@ class QuestionsController < ApplicationController
     if params[:tag]
     @question = Question.tagged_with(params[:tag])
     else
-    # @question = Question.order("RANDOM()").limit(1)
-    @question = Question.all
+    @question = Question.order("RANDOM()")
+    # @question = Question.all
     # @question=Question.offset(rand(Question.count)).first
     end
     @attempt = Attempt.where(user_id: current_user.id).pluck(:question_id)
@@ -74,7 +74,7 @@ class QuestionsController < ApplicationController
   def answer
     @question=Question.find(params[:id])
     @answer=Question.new(response_params)
-    check = compare(@question, @answer)
+    check = compare(@question.answer.to_s.downcase, @answer.answer.to_s.downcase)
     score = 0
     if check
       score = 4
@@ -113,7 +113,7 @@ end
       params.require(:question).permit(:question, :answer, :tag_list)
     end
     def compare(question, answer)
-      return answer.answer.downcase == question.answer.downcase
+      return answer == question
     end
     def response_params
       params.require(:question).permit(:question,:answer,:user_id)

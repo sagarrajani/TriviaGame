@@ -1,5 +1,5 @@
 
-<% if @question.answer!=@answer.answer %>
+<% if @question.answer.downcase!=@answer.answer.downcase %>
 <div class="well">
   <h2><%= @question.question %></h2>
   <p class="danger">Wrong Answer</p>
