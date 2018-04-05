@@ -1,4 +1,3 @@
-<% obj=obj.reject{|o| atm.any?{|a| a==o.id} } %>
 <% obj.each do |question| %>
 <% if user_signed_in? && current_user!=question.user%>
 <div class="well row">

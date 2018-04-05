@@ -1,23 +1,33 @@
 class QuestionsController < ApplicationController
   respond_to :html, :js
   before_action :authenticate_user!
+  require 'will_paginate/array'
 
   def index
     # @question = Question.order("RANDOM()").limit(1)
+    @attempt = Attempt.where(user_id: current_user.id).pluck(:question_id)
     if params[:tag]
     @question = Question.tagged_with(params[:tag])
     else
+    # @question = Question.order("RANDOM()")
     @question = Question.order("RANDOM()")
-    # @question = Question.all
-    # @question=Question.offset(rand(Question.count)).first
+    @question=@question.reject{|o| @attempt.any?{|a| a==o.id} }
+    @question=@question.reject{|o| o.user==current_user }
+    @question=@question.paginate(:page => params[:page])
+    # render plain: @question.size
     end
-    @attempt = Attempt.where(user_id: current_user.id).pluck(:question_id)
+
+
     # Person.where(age: 21).pluck(:id)
     # render plain: @attempt
   end
 
   def myindex
     @question = Question.all
+    @question=@question.reject{|o| o.user!=current_user }
+    # render plain: @question.size
+    @question = @question.paginate(:page => params[:page], :per_page => 5)
+    # render plain: @question.size
   end
 
   def new
@@ -104,7 +114,7 @@ def vote
   value = params[:type] == "up" ? 1 : -1
   @question = Question.find(params[:id])
   @question.add_or_update_evaluation(:votes, value, current_user)
-  redirect_back(fallback_location: home_path)
+  # redirect_back(fallback_location: home_path)
 end
 
 
