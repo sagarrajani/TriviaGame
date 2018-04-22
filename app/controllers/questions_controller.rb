@@ -4,37 +4,27 @@ class QuestionsController < ApplicationController
   require 'will_paginate/array'
 
   def index
-    # @question = Question.order("RANDOM()").limit(1)
     @attempt = Attempt.where(user_id: current_user.id).pluck(:question_id)
     if params[:tag]
     @question = Question.tagged_with(params[:tag])
     else
-    # @question = Question.order("RANDOM()")
     @question = Question.order("RANDOM()")
     @question=@question.reject{|o| @attempt.any?{|a| a==o.id} }
     @question=@question.reject{|o| o.user==current_user }
     @question=@question.paginate(:page => params[:page], :per_page => 1)
-    # render plain: @question.size
     end
     @tag="question"
-
-
-    # Person.where(age: 21).pluck(:id)
-    # render plain: @attempt
   end
 
   def tag_index
       @question = Question.tagged_with(params[:tag])
       @tag=params[:tag]
-      @tagw="tag"
+      # @tagw="tag"
   end
   def my_index
     @question = Question.all
     @question=@question.reject{|o| o.user!=current_user }
-    # render plain: @question.size
     @question = @question.paginate(:page => params[:page], :per_page => 5)
-
-    # render plain: @question.size
   end
 
    def tag_show
@@ -71,7 +61,6 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
-    # @categories = Category.find(params[:name])
   end
 
   def show
@@ -98,12 +87,9 @@ class QuestionsController < ApplicationController
 
 
   def create
-    # render plain: params[:question].inspect
-    # @categories = Category.find(params[:category_id])
     @question = Question.new(post_params)
     @question.user = current_user
-    # @question = Question.new(post_params)
-    # render plain: params[:question].inspect
+    # @question = current_user.questions.build(post_params)
     if(@question.save)
         redirect_to my_question_path
     else
@@ -146,11 +132,6 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question=Question.find(params[:id])
-    # render plain: params[:id]
-    # @attempt = Attempt.where(user_id: current_user.id).pluck(params[:id])
-    # @attempt = Attempt.find(params[:id])
-    # render plain: @question
-    # @attempt.destroy
     @question.destroy
     redirect_to my_question_path
   end
@@ -159,7 +140,6 @@ def vote
   value = params[:type] == "up" ? 1 : -1
   @question = Question.find(params[:id])
   @question.add_or_update_evaluation(:votes, value, current_user)
-  # redirect_back(fallback_location: home_path)
 end
 
 
