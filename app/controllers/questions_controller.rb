@@ -23,12 +23,12 @@ class QuestionsController < ApplicationController
     # render plain: @attempt
   end
 
-  def tagindex
+  def tag_index
       @question = Question.tagged_with(params[:tag])
       @tag=params[:tag]
       @tagw="tag"
   end
-  def myindex
+  def my_index
     @question = Question.all
     @question=@question.reject{|o| o.user!=current_user }
     # render plain: @question.size
@@ -37,12 +37,12 @@ class QuestionsController < ApplicationController
     # render plain: @question.size
   end
 
-   def tagshow
+   def tag_show
        @question=Question.find(params[:id])
        @answer=Question.new
    end
 
-   def taganswer
+   def tag_answer
      @tag=params[:name]
      @question=Question.find(params[:id])
      @answer=Question.new(response_params)
@@ -79,7 +79,7 @@ class QuestionsController < ApplicationController
     @answer=Question.new
   end
 
-  def myshow
+  def my_show
     @question = Question.find(params[:id])
   end
 
@@ -111,7 +111,7 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def roundindex
+  def round_index
     @question = Question.order("RANDOM()").limit(5)
     @answer=Question.new(response_params2)
     respond_to do |format|

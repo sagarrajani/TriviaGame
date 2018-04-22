@@ -5,7 +5,7 @@
 <p> Categories : <%= raw question.tag_list.map{|t| link_to t, tag_path(t)}.join(', ')%></p>
 <p><%= pluralize question.reputation_for(:votes).to_i, "vote" %></p>
 <hr>
-<%= link_to "Answer" , tagshow_path(@tag,question), :class => 'btn btn-default text-center'%>
+<%= link_to "Answer" , tag_show_path(@tag,question), :class => 'btn btn-default text-center'%>
 <%= link_to "", vote_question_path(question, type: "up"), method: "post",:class => 'btn btn-default glyphicon glyphicon-arrow-up text-right' %>
 <%= link_to "", vote_question_path(question, type: "down"), method: "post",:class => 'btn btn-default glyphicon glyphicon-arrow-down text-right' %>
 </div>

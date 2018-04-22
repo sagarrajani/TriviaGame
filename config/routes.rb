@@ -3,25 +3,25 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
-  root 'home#index', as: 'home'
+  root 'welcome#index', as: 'home'
   get 'welcome' => 'welcome#index', as: 'welcome'
   devise_for :users, controllers: {registrations: "registrations"}
   # get 'categories' => 'categories#index', as: 'category'
   # get 'categories' => 'categories#index', as: 'categories'
   # get '/categories/:category_id', to:  'questions#new#'
-  get 'question' => 'questions#myindex' , as: 'myquestion'
-  get 'question/:id/' => 'questions#myshow' , as: 'showmyquestion'
+  get 'question' => 'questions#my_index' , as: 'my_question'
+  get 'question/:id/' => 'questions#my_show' , as: 'show_my_question'
   delete 'question/:id/',to: 'questions#destroy', as: 'deletemyquestion'
   get 'questions/:id/edit', to: 'questions#edit', as: 'edit_myquestions'
-  get 'questions/:id/answer', to: 'questions#answer', as: 'ganswer'
+  # get 'questions/:id/answer', to: 'questions#answer', as: 'ganswer'
   post 'questions/:id/answer', to: 'questions#answer', as: 'answer'
   patch 'questions/:id/edit', to: 'questions#update'
-  get 'tags/:tag', to: 'questions#tagindex', as: 'tag'
-  get 'tags/:name/tagquestions/:id', to: 'questions#tagshow', as: 'tagshow'
-  post 'tags/:name/tagquestions/:id/answer', to: 'questions#taganswer', as: 'taganswer'
+  get 'tags/:tag', to: 'questions#tag_index', as: 'tag'
+  get 'tags/:name/tagquestions/:id', to: 'questions#tag_show', as: 'tag_show'
+  post 'tags/:name/tagquestions/:id/answer', to: 'questions#tag_answer', as: 'tag_answer'
   get 'users/score', to: 'users#score', as: 'score'
 
-  get 'round', to: 'questions#roundindex', as: 'roundindex'
+  get 'round', to: 'questions#round_index', as: 'round_index'
   get 'round/:id', to: 'questions#round', as: 'round'
 
   # match '/users',   to: 'users#index',   via: 'get'
