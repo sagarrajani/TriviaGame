@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
-  root 'welcome#index', as: 'home'
-  get 'welcome' => 'welcome#index', as: 'welcome'
+  root 'welcomes#index', as: 'home'
+  get 'welcome' => 'welcomes#index', as: 'welcome'
   devise_for :users, controllers: {registrations: "registrations"}
   # get 'categories' => 'categories#index', as: 'category'
   # get 'categories' => 'categories#index', as: 'categories'
