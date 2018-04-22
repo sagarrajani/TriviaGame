@@ -1,0 +1,15 @@
+<% if @question.answer.downcase!=@answer.answer.downcase %>
+<div class="well">
+  <h2><%= @question.question %></h2>
+  <p class="danger">Wrong Answer</p>
+  <p class=""> Correct Answer is -> <%=@question.answer%></p>
+  <%= link_to "Back to Question", tag_path(@tag), :class => 'btn btn-default text-center' %>
+  </div>
+  <% else %>
+  <div class="well">
+    <h2><%= @question.question %></h2>
+    <h4><%= @answer.answer %></h4>
+    <p class="">Correct Answer</p>
+    <%= link_to "Back to Questions", tag_path(@tag), :class => 'btn btn-default text-center' %>
+    </div>
+<% end %>
