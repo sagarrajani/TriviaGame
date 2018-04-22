@@ -146,6 +146,11 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question=Question.find(params[:id])
+    # render plain: params[:id]
+    # @attempt = Attempt.where(user_id: current_user.id).pluck(params[:id])
+    # @attempt = Attempt.find(params[:id])
+    # render plain: @question
+    # @attempt.destroy
     @question.destroy
     redirect_to my_question_path
   end
