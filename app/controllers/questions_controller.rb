@@ -90,7 +90,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if(@question.update(post_params))
-        redirect_to showmyquestion_path(@question)
+        redirect_to show_my_question_path(@question)
     else
       render 'edit'
     end
@@ -105,7 +105,7 @@ class QuestionsController < ApplicationController
     # @question = Question.new(post_params)
     # render plain: params[:question].inspect
     if(@question.save)
-        redirect_to myquestion_path
+        redirect_to my_question_path
     else
       render 'new'
     end
