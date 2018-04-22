@@ -2,7 +2,7 @@
     <div class='well'>
       <h2><%= @question.question %></h2>
       <hr>
-      <%= form_for @answer, url: taganswer_path do |f| %>
+      <%= form_for @answer, url: tag_answer_path do |f| %>
         <%= f.hidden_field :question, value: @question.question %>
         <%= f.hidden_field :user, value: @question.user %>
         <div class="form-group">

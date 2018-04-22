@@ -23,12 +23,12 @@ class QuestionsController < ApplicationController
     # render plain: @attempt
   end
 
-  def tagindex
+  def tag_index
       @question = Question.tagged_with(params[:tag])
       @tag=params[:tag]
       @tagw="tag"
   end
-  def myindex
+  def my_index
     @question = Question.all
     @question=@question.reject{|o| o.user!=current_user }
     # render plain: @question.size
@@ -37,12 +37,12 @@ class QuestionsController < ApplicationController
     # render plain: @question.size
   end
 
-   def tagshow
+   def tag_show
        @question=Question.find(params[:id])
        @answer=Question.new
    end
 
-   def taganswer
+   def tag_answer
      @tag=params[:name]
      @question=Question.find(params[:id])
      @answer=Question.new(response_params)
@@ -79,7 +79,7 @@ class QuestionsController < ApplicationController
     @answer=Question.new
   end
 
-  def myshow
+  def my_show
     @question = Question.find(params[:id])
   end
 
@@ -90,7 +90,7 @@ class QuestionsController < ApplicationController
   def update
     @question = Question.find(params[:id])
     if(@question.update(post_params))
-        redirect_to showmyquestion_path(@question)
+        redirect_to show_my_question_path(@question)
     else
       render 'edit'
     end
@@ -105,13 +105,13 @@ class QuestionsController < ApplicationController
     # @question = Question.new(post_params)
     # render plain: params[:question].inspect
     if(@question.save)
-        redirect_to myquestion_path
+        redirect_to my_question_path
     else
       render 'new'
     end
   end
 
-  def roundindex
+  def round_index
     @question = Question.order("RANDOM()").limit(5)
     @answer=Question.new(response_params2)
     respond_to do |format|
@@ -145,8 +145,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @question=Question.find(params[:id])
     @question.destroy
-    redirect_to questions_path
+    redirect_to my_question_path
   end
 
 def vote
