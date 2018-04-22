@@ -145,8 +145,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @question=Question.find(params[:id])
     @question.destroy
-    redirect_to questions_path
+    redirect_to my_question_path
   end
 
 def vote

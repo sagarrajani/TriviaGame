@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get '/categories/:category_id', to:  'questions#new#'
   get 'question' => 'questions#my_index' , as: 'my_question'
   get 'question/:id/' => 'questions#my_show' , as: 'show_my_question'
-  delete 'question/:id/',to: 'questions#destroy', as: 'delete_my_question'
+  delete 'question.:id/',to: 'questions#destroy', as: 'delete_my_question'
   get 'questions/:id/edit', to: 'questions#edit', as: 'edit_my_questions'
   # get 'questions/:id/answer', to: 'questions#answer', as: 'ganswer'
   post 'questions/:id/answer', to: 'questions#answer', as: 'answer'
