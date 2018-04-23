@@ -1,6 +1,6 @@
 <% obj.each do |question| %>
 <% if user_signed_in? && current_user!=question.user%>
-<div class="well row">
+<div class="well row text-center">
 <h3><%=question.question %></h3>
 <p> Categories : <%= raw question.tag_list.map{|t| link_to t, tag_path(t)}.join(', ')%></p>
 <p><%= pluralize question.reputation_for(:votes).to_i, "vote" %></p>
