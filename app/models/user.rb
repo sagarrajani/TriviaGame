@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :evaluations, class_name: "RSEvaluation", as: :source
 
   has_reputation :votes, source: {reputation: :votes, of: :questions}, aggregated_by: :sum
+
   
 end
