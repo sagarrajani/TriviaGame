@@ -6,6 +6,9 @@ class TagsController < ApplicationController
 
   def question
     @question = Question.tagged_with(params[:tag])
+    @attempt = Attempt.where(user_id: current_user.id).pluck(:question_id)
+    @question=@question.reject{|o| @attempt.any?{|a| a==o.id} }
+    @question=@question.reject{|o| o.user==current_user }
     @question = @question.paginate(:page => params[:page], :per_page => 5)
     @tag=params[:tag]
     # @tagw="tag"

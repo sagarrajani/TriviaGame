@@ -1,6 +1,6 @@
-<div class="well">
-<h1>Edit Question</h1>
 
+<h3 class="text-center">Edit Question</h3>
+<div class="well">
 <%=form_for :question,  method: :patch do |f| %>
 
 <% if @question.errors.full_messages.any? %>
@@ -21,10 +21,11 @@
       <%= f.label :tag_list,"Categories (Seperated by Commas)" %><br/>
       <%= f.text_field :tag_list, class: "form-control"%>
   </p>
-
+  <div class="inline text-center">
 <p>
-  <%= f.submit({:class => 'btn btn-primary'})%>
+  <%= f.submit({:class => 'btn btn-primary text-center'})%>
 </p>
+</div>
 
 <% end %>
 </div>
