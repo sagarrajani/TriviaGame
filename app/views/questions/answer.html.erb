@@ -2,7 +2,7 @@
 <% if @question.answer.downcase!=@answer.answer.downcase %>
 <div class="well">
   <h2><%= @question.question %></h2>
-  <p class="danger">Wrong Answer</p>
+  <p class="text-danger">Wrong Answer</p>
   <p class=""> Correct Answer is -> <%=@question.answer%></p>
   <%= link_to "Back to Questions", questions_path, :class => 'btn btn-default text-center' %>
   </div>
@@ -10,7 +10,7 @@
   <div class="well">
     <h2><%= @question.question %></h2>
     <h4><%= @answer.answer %></h4>
-    <p class="">Correct Answer</p>
+    <p class="text-success">Correct Answer</p>
     <%= link_to "Back to Questions", questions_path, :class => 'btn btn-default text-center' %>
     </div>
 <% end %>
